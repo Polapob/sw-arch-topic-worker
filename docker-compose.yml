@@ -1,0 +1,20 @@
+version: '3'
+networks:
+  rabbitMQ:
+    name: topic_rabbitMQ
+  backend:
+    name: topic_backend
+
+services:
+  worker:
+    container_name: comment-worker
+    build: .
+    networks:
+      - rabbitMQ
+      - backend
+    command: 
+      - sh
+      - -c
+      - | 
+        ping rabbitMQ:5672 -c 3 && ping backend:8080 -c 3 && java -jar topic-worker.jar
+  
