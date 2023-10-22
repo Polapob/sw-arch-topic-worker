@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,12 +20,12 @@ public class App {
 	private static final String EXCHANGE_NAME = "comment_worker";
 	private static final String[] topics = { "post.comment.create" };
 	private static final List<String> BINDING_KEYS = new ArrayList<>(Arrays.asList(topics));
-	private static final String CREATE_COMMENT_URL = "http://backend:4000/comments";
+	private static final String CREATE_COMMENT_URL = "http://topic-backend:4000/comments";
 
 	public static void main(String[] args) throws Exception {
 		try {
 			var factory = new ConnectionFactory();
-			factory.setUri("amqp://guest:guest@rabbitMQ:5672");
+			factory.setUri("amqp://guest:guest@rabbitMQ:5672/%2F");
 			var connection = factory.newConnection();
 			var channel = connection.createChannel();
 
@@ -43,12 +44,9 @@ public class App {
 				try {
 					var body = delivery.getBody();
 					var mapper = new ObjectMapper();
-
-					System.out.println("Body =" + body.toString());
-					System.out.println(" [x] Received body'" + body.toString() + "'");
-					var message = mapper.readValue(body, new TypeReference<HashMap<String, String>>() {
+					var message = mapper.readValue(body, new TypeReference<Map<String, String>>() {
 					});
-					System.out.println(" [x] Received '" + message + "'");
+					System.out.println(" [x] Success Received Message =" + message + "'");
 
 					var dto = new CreateCommentRequestDTO();
 					dto.topicId = message.get("topicId");

@@ -3,10 +3,12 @@ networks:
   rabbitMQ:
     name: topic_rabbitMQ
     external: true
+    driver: bridge
 
   backend:
     name: topic_backend
     external: true
+    driver: bridge
 
 services:
   worker:
