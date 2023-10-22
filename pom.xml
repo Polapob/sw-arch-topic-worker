@@ -48,6 +48,15 @@
 			<artifactId>amqp-client</artifactId>
 			<version>5.19.0</version>
 		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-shade-plugin</artifactId>
+			<version>3.5.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -107,6 +116,7 @@
 					<artifactId>maven-project-info-reports-plugin</artifactId>
 					<version>3.0.0</version>
 				</plugin>
+
 
 			</plugins>
 		</pluginManagement>
