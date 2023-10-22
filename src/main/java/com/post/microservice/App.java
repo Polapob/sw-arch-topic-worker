@@ -1,9 +1,6 @@
 package com.post.microservice;
 
-import java.io.IOException;
-import java.net.InetAddress;
 import java.net.URI;
-import java.net.UnknownHostException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -22,7 +19,7 @@ public class App {
 	private static final String EXCHANGE_NAME = "comment_worker";
 	private static final String[] topics = { "post.comment.create" };
 	private static final List<String> BINDING_KEYS = new ArrayList<>(Arrays.asList(topics));
-	private static final String CREATE_COMMENT_URL = "http://backend:8080/comments";
+	private static final String CREATE_COMMENT_URL = "http://backend:4000/comments";
 
 	public static void main(String[] args) throws Exception {
 		try {
