@@ -2,8 +2,11 @@ version: '3'
 networks:
   rabbitMQ:
     name: topic_rabbitMQ
+    external: true
+
   backend:
     name: topic_backend
+    external: true
 
 services:
   worker:
@@ -12,9 +15,4 @@ services:
     networks:
       - rabbitMQ
       - backend
-    command: 
-      - sh
-      - -c
-      - | 
-        ping rabbitMQ:5672 -c 3 && ping backend:8080 -c 3 && java -jar topic-worker.jar
   
