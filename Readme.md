@@ -15,7 +15,15 @@ Version 1 : We don't connect with Subject service
 
 If you don't know how to run these services, please go to this link https://github.com/Polapob/sw-arch-post-service
 
-### Step 2 Start comment worker
+### Step 2 Update code in comment worker
+
+Run this command before doing anything. Make sure that you are in main branch
+
+```
+git pull
+```
+
+### Step 3 Start comment worker
 
 ```
 make run_worker
