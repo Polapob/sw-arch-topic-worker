@@ -14,6 +14,7 @@ services:
   worker:
     container_name: comment-worker
     build: .
+    image: cu-overflow/topic-worker
     networks:
       - rabbitMQ
       - backend
